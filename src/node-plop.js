@@ -9,11 +9,12 @@ import bakedInHelpers from './baked-in-helpers';
 import generatorRunner from './generator-runner';
 
 function nodePlop(plopfilePath = '', plopCfg = {}) {
-	var pkgJson = {};
-	var defaultInclude = { generators: true };
+	let pkgJson = {};
+	let defaultInclude = { generators: true };
 
 	let welcomeMessage;
-	const { destBasePath } = plopCfg;
+	const { destBasePath, force } = plopCfg;
+
 	const generators = {};
 	const generatorMixins = {};
 	const partials = {};
@@ -251,7 +252,7 @@ function nodePlop(plopfilePath = '', plopCfg = {}) {
 	};
 
 	// the runner for this instance of the nodePlop api
-	const runner = generatorRunner(plopfileApi);
+	const runner = generatorRunner(plopfileApi, { force });
 
 	/**
 		if actions is a funciton, it gets invoked with ...args and returned
